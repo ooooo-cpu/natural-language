@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="按股票代码查询 A 股和美股的模拟行情与价格走势。">
+    <meta property="og:title" content="行情簿 · 股票查询">
+    <meta property="og:description" content="按股票代码查询 A 股和美股的模拟行情与价格走势。">
+    <title>行情簿 · 股票查询</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="shell masthead-inner">
+        <div class="brand"><span class="brand-icon" aria-hidden="true"><i></i><i></i><i></i></span>行情簿</div>
+        <span class="mode"><i aria-hidden="true"></i> 模拟行情</span>
+      </div>
+    </header>
+    <main class="shell">
+      <section class="intro" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <h1 id="page-title">股票行情查询</h1>
+          <p>通过股票代码查看报价、交易数据与历史走势。</p>
+        </div>
+        <div class="query">
+          <form id="search-form" role="search">
+            <label class="visually-hidden" for="symbol">股票代码</label>
+            <div class="search-field">
+              <span class="search-icon" aria-hidden="true"></span>
+              <input id="symbol" name="symbol" placeholder="输入股票代码，例如 AAPL" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="12" required>
+              <button class="search-button" type="submit">查询</button>
+            </div>
+          </form>
+          <div class="examples" aria-label="示例股票代码">
+            <span>试试</span>
+            <button type="button" data-symbol="AAPL">AAPL</button>
+            <button type="button" data-symbol="NVDA">NVDA</button>
+            <button type="button" data-symbol="MSFT">MSFT</button>
+            <button type="button" data-symbol="TSLA">TSLA</button>
+            <button type="button" data-symbol="600519">600519</button>
+            <button type="button" data-symbol="000001">000001</button>
+          </div>
+        </div>
+      </section>
+      <p id="status" class="status" role="status">正在载入示例行情…</p>
+      <div id="quote" hidden>
+        <section class="card quote-card" aria-labelledby="company-name">
+          <div class="quote-company">
+            <div id="company-mark" class="company-mark" aria-hidden="true"></div>
+            <div>
+              <div class="company-line"><h2 id="company-name"></h2><span id="exchange" class="exchange"></span></div>
+              <p id="company-details"></p>
+            </div>
+          </div>
+          <div class="quote-value">
+            <div class="quote-price"><span id="price"></span><span id="currency" class="currency"></span></div>
+            <p id="change" class="change"></p>
+          </div>
+        </section>
+        <div class="details-grid">
+          <section class="card chart-card" aria-labelledby="trend-title">
+            <div class="card-heading">
+              <div><h2 id="trend-title">历史走势</h2><p>收盘价 · <span id="chart-currency"></span></p></div>
+              <div class="range" id="range" role="group" aria-label="走势时段">
+                <button type="button" data-days="5" aria-pressed="false">5 日</button>
+                <button type="button" data-days="30" aria-pressed="true">30 日</button>
+                <button type="button" data-days="90" aria-pressed="false">90 日</button>
+              </div>
+            </div>
+            <div id="chart-area" class="chart-area">
+              <canvas id="chart" role="img" aria-label="历史收盘价折线图"></canvas>
+              <div id="tooltip" class="tooltip" aria-hidden="true" hidden></div>
+            </div>
+          </section>
+          <section class="card market-card" aria-labelledby="market-title">
+            <div class="card-heading">
+              <div><h2 id="market-title">交易概览</h2><p id="as-of"></p></div>
+            </div>
+            <dl>
+              <div><dt>开盘价</dt><dd id="open"></dd></div>
+              <div><dt>最高价</dt><dd id="high"></dd></div>
+              <div><dt>最低价</dt><dd id="low"></dd></div>
+              <div><dt>前收盘价</dt><dd id="previous-close"></dd></div>
+              <div><dt>成交量</dt><dd id="volume"></dd></div>
+            </dl>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer class="shell footer"><span>行情簿</span><p>所有报价与走势图均为模拟数据，仅用于功能演示。</p></footer>
+  </body>
+</html>
